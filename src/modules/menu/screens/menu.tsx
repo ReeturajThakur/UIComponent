@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const RenderList = () => {
+const Menu = () => {
   return (
     <View>
-      <Text>R</Text>
+      <Text>Menu</Text>
     </View>
   );
 };
 
-export default RenderList;
+export default Menu;
 
 const styles = StyleSheet.create({});

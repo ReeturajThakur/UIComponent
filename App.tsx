@@ -1,56 +1,58 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React from 'react';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useCallback} from 'react';
 import Headers from './src/components/headers';
 import {normalize} from './src/utils/dimensions';
-import RenderList from './src/components/renderList';
+
+import {menuData} from './src/modules/menu/screens/constants';
+import ListHeader from './src/components/listHeader';
+
+import KeyShortcutsRender from './src/components/keyShortcutsRender';
+import SettingRender from './src/components/settingRender';
+import ContactRender from './src/components/contactRender';
 
 const App = () => {
   const onRender = ({item}: any) => {
-    return <RenderList />;
+    switch (item?.heading) {
+      case 'Key ShortCuts':
+        return <KeyShortcutsRender data={item?.keys} />;
+      case 'Settings':
+        return <SettingRender data={item?.keys} />;
+      case 'Contact':
+        return <ContactRender data={item?.keys} />;
+    }
+    return null;
   };
 
-  const _listHeader = () => {
+  const _listHeader = useCallback(() => {
     return (
-      <TouchableOpacity style={styles.userProfileContainer}>
-        <View style={styles.userIcon}>
-          <Image
-            style={styles.userIconStyle}
-            source={{
-              uri: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-            }}
-          />
-        </View>
-        <View style={styles.userDetailsContainerStyle}>
-          <Text numberOfLines={1} style={styles.userNameStyles}>
-            Ramakar Prasad Ramakar Prasad Ramakar Prasad Ramakar Prasad
-          </Text>
-          <Text numberOfLines={1} style={styles.userNumberStyles}>
-            {'7878787878787'}
-          </Text>
-        </View>
-        <Image source={{}} />
-      </TouchableOpacity>
+      <>
+        <ListHeader label={'Ram Prasad'} phoneNumber={'8786678399'} />
+        <ListHeader
+          leftIconContainerStyle={styles.leftIconContainerStyle}
+          label={'About community'}
+          labelStyle={styles.labelStyle}
+          headerContainer={styles.headerContainer}
+        />
+      </>
     );
-  };
+  }, []);
 
   return (
-    <>
+    <View style={styles.parentContainerStyle}>
       <Headers />
-
       <FlatList
-        data={[1, 2, 1, 1, 1, 1]}
+        data={menuData}
+        bounces={false}
         style={styles.containerStyles}
+        contentContainerStyle={{paddingBottom: normalize(60)}}
         renderItem={onRender}
         ListHeaderComponent={_listHeader}
+        showsVerticalScrollIndicator={false}
       />
-    </>
+      <TouchableOpacity style={styles.logoutButtonStyle}>
+        <Text style={styles.logoutTextStyle}>Logout</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -58,40 +60,27 @@ export default React.memo(App);
 
 const styles = StyleSheet.create({
   containerStyles: {
-    flex: 1,
+    // flex: 1,
     padding: normalize(20),
     backgroundColor: '#F5F7F9',
   },
-  userProfileContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#165FAA',
-    borderRadius: normalize(12),
-    paddingVertical: normalize(16),
-    paddingHorizontal: normalize(20),
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+  headerContainer: {
+    backgroundColor: 'white',
+    marginTop: normalize(16),
+  },
+  labelStyle: {color: '#333E49', fontSize: normalize(14)},
+  leftIconContainerStyle: {height: normalize(36), width: normalize(36)},
+  logoutButtonStyle: {
+    height: normalize(50),
+    justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal: normalize(20),
+    marginBottom: normalize(20),
+    backgroundColor: 'white',
+    borderColor: '#1661AD',
+    borderWidth: 1,
+    borderRadius: normalize(8),
   },
-  userIconStyle: {
-    height: '100%',
-    width: '100%',
-  },
-  userIcon: {
-    height: normalize(44),
-    width: normalize(44),
-  },
-  userDetailsContainerStyle: {
-    marginHorizontal: normalize(14),
-    width: 0,
-    flex: 1,
-  },
-  userNameStyles: {
-    color: '#FFFFFF',
-    fontSize: normalize(14),
-  },
-  userNumberStyles: {
-    color: '#FFFFFF',
-    fontSize: normalize(12),
-    marginTop: normalize(4),
-  },
+  logoutTextStyle: {color: '#1661AD', fontSize: normalize(15)},
+  parentContainerStyle: {flex: 1, backgroundColor: '#F5F7F9'},
 });

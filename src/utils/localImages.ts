@@ -1,7 +1,7 @@
 const fixedPath = '../assets/images/';
 
 export default {
-  sewa: require(`${fixedPath}sewa.png`),
+  sewa: require(`${fixedPath}seva.png`),
   tasks: require(`${fixedPath}task.png`),
   events: require(`${fixedPath}events.png`),
   mettings: require(`${fixedPath}meetings.png`),

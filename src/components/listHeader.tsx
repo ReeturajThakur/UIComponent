@@ -3,12 +3,26 @@ import React from 'react';
 import {normalize} from '../utils/dimensions';
 import localImages from '../utils/localImages';
 
-type Props = {phoneNumber?: string; label?: string};
+type Props = {
+  phoneNumber?: string;
+  label?: string;
+  headerContainer?: any;
+  labelStyle?: any;
+  leftIconContainerStyle?: any;
+};
 
-const ListHeader = ({label, phoneNumber}: Props) => {
+const ListHeader = ({
+  label,
+  phoneNumber,
+  headerContainer,
+  labelStyle,
+  leftIconContainerStyle,
+}: Props) => {
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.userProfileContainer}>
-      <View style={styles.userIcon}>
+    <TouchableOpacity
+      activeOpacity={1}
+      style={[styles.userProfileContainer, headerContainer]}>
+      <View style={[styles.leftIconDefaultContainer, leftIconContainerStyle]}>
         <Image
           style={styles.userIconStyle}
           source={{
@@ -18,7 +32,7 @@ const ListHeader = ({label, phoneNumber}: Props) => {
       </View>
       <View style={styles.userDetailsContainerStyle}>
         {label && (
-          <Text numberOfLines={1} style={styles.userNameStyles}>
+          <Text numberOfLines={1} style={[styles.userNameStyles, labelStyle]}>
             {label}
           </Text>
         )}
@@ -28,18 +42,18 @@ const ListHeader = ({label, phoneNumber}: Props) => {
           </Text>
         )}
       </View>
-      <Image source={localImages.arrow} />
+      <Image source={localImages.arrow} style={styles.rightIconStyle} />
     </TouchableOpacity>
   );
 };
 
-export default ListHeader;
+export default React.memo(ListHeader);
 
 const styles = StyleSheet.create({
   userProfileContainer: {
     flexDirection: 'row',
     backgroundColor: '#165FAA',
-    borderRadius: normalize(12),
+    borderRadius: normalize(8),
     paddingVertical: normalize(16),
     paddingHorizontal: normalize(20),
     flexWrap: 'wrap',
@@ -50,7 +64,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-  userIcon: {
+  leftIconDefaultContainer: {
     height: normalize(44),
     width: normalize(44),
   },
@@ -67,5 +81,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: normalize(12),
     marginTop: normalize(4),
+  },
+  rightIconStyle: {
+    width: normalize(24),
+    height: normalize(24),
   },
 });

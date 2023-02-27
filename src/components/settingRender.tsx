@@ -12,10 +12,12 @@ import CardWrapper from './cardWrapper';
 import localImages from '../utils/localImages';
 import CustomSeperator from './customSeperator';
 
-type Props = {rightIcon: any; label: string; leftIcon: any; data: Array<any>};
+type Props = {data: Array<RenderItemsType>};
+
+type RenderItemsType = {rightIcon: any; label: string; leftIcon: any};
 
 const SettingRender = (data: Props) => {
-  const onRender = ({item}: {item: Props}) => {
+  const onRender = ({item}: {item: RenderItemsType}) => {
     return (
       <>
         <TouchableOpacity

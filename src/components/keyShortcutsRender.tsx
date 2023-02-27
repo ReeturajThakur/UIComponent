@@ -12,8 +12,14 @@ import CardWrapper from './cardWrapper';
 import localImages from '../utils/localImages';
 import CustomSeperator from './customSeperator';
 
-const KeyShortcutsRender = (data: any) => {
-  const onRender = ({item}: any) => {
+type Props = {data: Array<RenderItemsType>};
+
+type RenderItemsType = {rightIcon: any; label: string; leftIcon: any};
+
+const KeyShortcutsRender = (data: Props) => {
+  console.log('datatta', data);
+
+  const onRender = ({item}: {item: RenderItemsType}) => {
     return (
       <>
         <TouchableOpacity

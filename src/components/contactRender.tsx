@@ -11,8 +11,10 @@ import CardWrapper from './cardWrapper';
 import localImages from '../utils/localImages';
 import {normalize} from '../utils/dimensions';
 
-const ContactRender = (data: any) => {
-  const onRender = ({item}: any) => {
+type Props = {rightIcon: any; label: string; leftIcon: any; data: Array<any>};
+
+const ContactRender = (data: Props) => {
+  const onRender = ({item}: {item: Props}) => {
     return (
       <>
         <TouchableOpacity

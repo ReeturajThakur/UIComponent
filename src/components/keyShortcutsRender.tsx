@@ -12,8 +12,10 @@ import CardWrapper from './cardWrapper';
 import localImages from '../utils/localImages';
 import CustomSeperator from './customSeperator';
 
-const KeyShortcutsRender = (data: any) => {
-  const onRender = ({item}: any) => {
+type Props = {rightIcon: any; label: string; leftIcon: any; data: Array<any>};
+
+const KeyShortcutsRender = (data: Props) => {
+  const onRender = ({item}: {item: Props}) => {
     return (
       <>
         <TouchableOpacity

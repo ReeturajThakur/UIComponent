@@ -1,4 +1,4 @@
-import localImages from '../../../utils/localImages';
+import localImages from './localImages';
 
 export const menuData = [
   {

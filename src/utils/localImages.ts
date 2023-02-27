@@ -14,4 +14,5 @@ export default {
   notificationSetting: require(`${fixedPath}notificationSetting.png`),
   languageSetting: require(`${fixedPath}languageSetting.png`),
   helpsupport: require(`${fixedPath}helpsupport.png`),
+  arrow: require(`${fixedPath}arrow.png`),
 };

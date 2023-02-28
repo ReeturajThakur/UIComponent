@@ -1,50 +1,13 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {normalize} from '../utils/dimensions';
 
 type Props = {
   children: any;
-  isDisable?: boolean;
-  marginTop?: number;
-  marginBottom?: number;
-  borderWidth?: number;
-  borderColor?: string;
-  backgroundColor?: any;
-  customStyle?: any;
-  minHight?: string | number;
-  onPress?: () => void;
 };
 
-function CustomCardWrapper({
-  children,
-  isDisable,
-  marginTop,
-  marginBottom,
-  borderWidth,
-  borderColor,
-  customStyle,
-  minHight,
-  onPress,
-}: Props) {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      disabled={isDisable}
-      activeOpacity={0.8}
-      style={[
-        styles.cardContainer,
-        {
-          marginTop: marginTop,
-          marginBottom: marginBottom,
-          borderWidth: borderWidth,
-          borderColor: borderColor,
-          minHeight: minHight,
-        },
-        customStyle,
-      ]}>
-      {children}
-    </TouchableOpacity>
-  );
+function CustomCardWrapper({children}: Props) {
+  return <View style={styles.cardContainer}>{children}</View>;
 }
 
 export default React.memo(CustomCardWrapper);
@@ -52,8 +15,9 @@ export default React.memo(CustomCardWrapper);
 const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: 'white',
-
+    marginTop: normalize(8),
     paddingHorizontal: normalize(16),
     borderRadius: normalize(8),
+    marginHorizontal: normalize(20),
   },
 });

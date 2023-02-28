@@ -12,13 +12,11 @@ import CardWrapper from './cardWrapper';
 import localImages from '../utils/localImages';
 import CustomSeperator from './customSeperator';
 
-type Props = {data: Array<RenderItemsType>};
+type Props = {data: Array<RenderItemsType>; heading: string};
 
 type RenderItemsType = {rightIcon: any; label: string; leftIcon: any};
 
 const KeyShortcutsRender = (data: Props) => {
-  console.log('datatta', data);
-
   const onRender = ({item}: {item: RenderItemsType}) => {
     return (
       <>
@@ -42,8 +40,8 @@ const KeyShortcutsRender = (data: Props) => {
 
   return (
     <>
-      <Text style={styles.titleStyle}>{'Key Shortcuts'}</Text>
-      <CardWrapper marginTop={normalize(8)}>
+      <Text style={styles.titleStyle}>{data?.heading}</Text>
+      <CardWrapper>
         <FlatList
           data={data.data}
           renderItem={onRender}
@@ -71,8 +69,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   leftIconDefaultContainer: {
-    height: normalize(44),
-    width: normalize(44),
+    height: normalize(28),
+    width: normalize(28),
   },
   userDetailsContainerStyle: {
     marginHorizontal: normalize(14),
@@ -80,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userNameStyles: {
-    // color: '#FFFFFF',
     color: 'black',
     fontSize: normalize(14),
   },
@@ -97,6 +94,7 @@ const styles = StyleSheet.create({
     marginTop: normalize(20),
     fontSize: normalize(16),
     color: '#333E49',
+    marginHorizontal: normalize(20),
   },
   seperatorStyle: {height: normalize(0.5), backgroundColor: '#E6E6E6'},
 });

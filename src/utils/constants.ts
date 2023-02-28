@@ -2,7 +2,7 @@ import localImages from './localImages';
 
 export const menuData = [
   {
-    heading: 'Key ShortCuts',
+    heading: 'Key Shortcuts',
     keys: [
       {
         rightIcon: localImages.sewa,

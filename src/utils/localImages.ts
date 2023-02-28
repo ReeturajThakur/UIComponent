@@ -15,4 +15,5 @@ export default {
   languageSetting: require(`${fixedPath}languageSetting.png`),
   helpsupport: require(`${fixedPath}helpsupport.png`),
   arrow: require(`${fixedPath}arrow.png`),
+  profileBackground: require(`${fixedPath}profileBackground.png`),
 };

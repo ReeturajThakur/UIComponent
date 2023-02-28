@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {normalize} from '../utils/dimensions';
+import {normalize, vw} from '../utils/dimensions';
 import localImages from '../utils/localImages';
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
   label?: string;
   headerContainer?: any;
   labelStyle?: any;
+  backgroundSource?: any;
   leftIconContainerStyle?: any;
 };
 
@@ -15,6 +16,7 @@ const ListHeader = ({
   label,
   phoneNumber,
   headerContainer,
+  backgroundSource,
   labelStyle,
   leftIconContainerStyle,
 }: Props) => {
@@ -22,6 +24,13 @@ const ListHeader = ({
     <TouchableOpacity
       activeOpacity={1}
       style={[styles.userProfileContainer, headerContainer]}>
+      {backgroundSource && (
+        <Image
+          style={styles.backgroundImageStyle}
+          resizeMode={'contain'}
+          source={backgroundSource}
+        />
+      )}
       <View style={[styles.leftIconDefaultContainer, leftIconContainerStyle]}>
         <Image
           style={styles.userIconStyle}
@@ -52,14 +61,16 @@ export default React.memo(ListHeader);
 const styles = StyleSheet.create({
   userProfileContainer: {
     flexDirection: 'row',
-    backgroundColor: '#165FAA',
     borderRadius: normalize(8),
-    paddingVertical: normalize(16),
-    paddingHorizontal: normalize(20),
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: normalize(16),
+    alignSelf: 'center',
+    marginHorizontal: normalize(16),
+    paddingHorizontal: normalize(16),
   },
+
   userIconStyle: {
     height: '100%',
     width: '100%',
@@ -85,5 +96,13 @@ const styles = StyleSheet.create({
   rightIconStyle: {
     width: normalize(24),
     height: normalize(24),
+  },
+  backgroundImageStyle: {
+    height: vw(142),
+    width: vw(391),
+    position: 'absolute',
+    zIndex: -1,
+    left: normalize(-22),
+    top: normalize(-27),
   },
 });
